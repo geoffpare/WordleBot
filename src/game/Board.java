@@ -66,6 +66,6 @@ public class Board {
     }
 
     public boolean isGameOver() {
-        return guesses.size() >= MAX_GUESSES;
+        return guesses.size() >= MAX_GUESSES || isBoardSolved();
     }
 }

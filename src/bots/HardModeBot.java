@@ -5,6 +5,7 @@ import game.Board;
 import game.BoardKnowledge;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -65,10 +66,43 @@ public class HardModeBot {
         System.out.println("Remaining word list size based on positions: " + wordsMatchingPositions.size());
         remainingWords = wordsMatchingPositions;
 
+        // Filter based on letters we know aren't present
+        List<String> nonLetters = getNonPresentLetters(bk);
+        System.out.println("Letters which aren't present in target: " + nonLetters);
+
+        List<String> wordsNotMatchingKnownNonLetters = new ArrayList<>();
+        for (String word : wordsMatchingPositions) {
+            if (!wordContainsAnyLetter(word, nonLetters)) {
+                wordsNotMatchingKnownNonLetters.add(word);
+            }
+        }
+
+        System.out.println("Remaining word list size based on non-letters: " + wordsNotMatchingKnownNonLetters.size());
+        remainingWords = wordsNotMatchingKnownNonLetters;
+
         // Deterministically just pick the first remaining valid word as our guess in this bot
-        String guess = wordsMatchingPositions.get(0);
-        wordsMatchingPositions.remove(guess);
+        String guess = remainingWords.get(0);
+        remainingWords.remove(guess);
         return guess;
+    }
+
+    private boolean wordContainsAnyLetter(String word, List<String> letters) {
+        for (String letter : letters) {
+            if (word.contains(letter)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private List<String> getNonPresentLetters(BoardKnowledge bk) {
+        Set<String> guessedLetters = new HashSet<>();
+        for (String word : bk.getGuesses()) {
+            guessedLetters.addAll(List.of(word.split("")));
+        }
+
+        return new ArrayList(Sets.difference(guessedLetters, bk.getWordContainsLetters()));
     }
 
     private boolean doLetterPositionsMatch(String word, List<String> letterAtPosition) {
