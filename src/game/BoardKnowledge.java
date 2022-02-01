@@ -32,7 +32,7 @@ public class BoardKnowledge {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Word cotains: " + wordContainsLetters.toString() + "\n");
+        sb.append("Word contains: " + wordContainsLetters.toString() + "\n");
         sb.append("Letters at Position: [" + letterAtPositionMustBe.toString() + "]");
         return sb.toString();
     }

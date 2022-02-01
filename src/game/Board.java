@@ -4,12 +4,16 @@ import com.google.common.collect.Sets;
 
 import java.util.*;
 
+/**
+ * Initialize with the target word
+ * Contains the logic for tracking game state and generating the board knowledge for the player to use
+ */
 public class Board {
     private static int MAX_GUESSES = 6;
     private static int WORD_LENGTH = 5;
 
     private String targetWord;
-    private List<String> guesses = new ArrayList<>(5);
+    private List<String> guesses = new ArrayList<>(MAX_GUESSES);
 
     public Board(String targetWord) {
         this.targetWord = targetWord;

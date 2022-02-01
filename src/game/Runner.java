@@ -8,6 +8,9 @@ import utils.InputReader;
 import java.io.FileNotFoundException;
 import java.util.List;
 
+/**
+ * Simple main class for running bots against boards
+ */
 public class Runner {
 
 

@@ -9,6 +9,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Follows "Hard mode" rules
+ * Must use all knowledge for each guess
+ *   Guess must contain all known letters
+ *   Guess must match all known letter positions
+ *   Guess must not contain letters we know aren't present in the target
+ * Works by eliminating words from the starting dictionary, then next guess is the first remaining word
+ * in order to be deterministic
+ */
 public class HardModeBot {
     private final List<String> validWords;
     private List<String> remainingWords;
