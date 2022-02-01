@@ -28,7 +28,7 @@ public class HardModeBot {
         this.remainingWords = new ArrayList<>(validWords);
     }
 
-    public void solve(Board board) {
+    public Board solve(Board board) {
         System.out.println("Starting board...");
         System.out.println("Guessing: " + firstGuess);
         BoardKnowledge bk = board.submitGuess(firstGuess);  // Hard code starting word for now
@@ -45,6 +45,8 @@ public class HardModeBot {
         } else {
             System.out.println("Failed to solve board");
         }
+
+        return board;
     }
 
     // Follows hard mode rules that must pick a word based on the existing board knowledge

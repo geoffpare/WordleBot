@@ -72,4 +72,20 @@ public class Board {
     public boolean isGameOver() {
         return guesses.size() >= MAX_GUESSES || isBoardSolved();
     }
+
+    /**
+     * Score: 6 points for getting it in on, 5 points for 2 guess, 4 for 3 guess, 3 for 4 guesses, 2 for 5 guesses, 1 for 6 guesses, 0 for not solving.
+     * Then we can just post a single number.
+     */
+    public int getBoardScore() {
+        if (!isBoardSolved()) {
+            return 0;
+        }
+
+        return 7 - guesses.size();
+    }
+
+    public List<String> getGuesses() {
+        return guesses;
+    }
 }

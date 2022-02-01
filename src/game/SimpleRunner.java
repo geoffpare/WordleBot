@@ -1,8 +1,6 @@
 package game;
 
 import bots.HardModeBot;
-import bots.RandomGuessBot;
-import game.Board;
 import utils.InputReader;
 
 import java.io.FileNotFoundException;
@@ -11,8 +9,7 @@ import java.util.List;
 /**
  * Simple main class for running bots against boards
  */
-public class Runner {
-
+public class SimpleRunner {
 
     /*
      * Load dictionary
