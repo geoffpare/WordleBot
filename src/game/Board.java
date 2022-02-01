@@ -1,4 +1,4 @@
-package bots;
+package game;
 
 import com.google.common.collect.Sets;
 
@@ -30,18 +30,16 @@ public class Board {
         Set<String> wordContainsLetters = getWordContainsLetters();
         List<String> letterAtPositionMustBe = getLetterAtPositions();
 
-        return new BoardKnowledge(wordContainsLetters, letterAtPositionMustBe);
+        return new BoardKnowledge(wordContainsLetters, letterAtPositionMustBe, guesses);
     }
 
     private List<String> getLetterAtPositions() {
-        List<String> letterAtPosition = new ArrayList<>(5);
+        List<String> letterAtPosition = new ArrayList<>(Arrays.asList("", "", "", "", ""));
 
         for (String guess : guesses) {
             for (int i=0; i<WORD_LENGTH; i++){
                 if (guess.charAt(i) == targetWord.charAt(i)) {
                     letterAtPosition.set(i, String.valueOf(guess.charAt(i)));
-                } else {
-                    letterAtPosition.set(i, "");
                 }
             }
         }
@@ -68,6 +66,6 @@ public class Board {
     }
 
     public boolean isGameOver() {
-        return guesses.size() < MAX_GUESSES;
+        return guesses.size() >= MAX_GUESSES;
     }
 }

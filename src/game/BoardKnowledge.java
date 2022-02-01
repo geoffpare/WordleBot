@@ -1,7 +1,5 @@
-package bots;
+package game;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -11,10 +9,12 @@ import java.util.Set;
 public class BoardKnowledge {
     private Set<String> wordContainsLetters;
     private List<String> letterAtPositionMustBe;  // e.g. letter.at(1) must be "b"
+    private List<String> guesses;
 
-    public BoardKnowledge(Set<String> wordContainsLetters, List<String> letterAtPositionMustBe) {
+    public BoardKnowledge(Set<String> wordContainsLetters, List<String> letterAtPositionMustBe, List<String> guesses) {
         this.wordContainsLetters = wordContainsLetters;
         this.letterAtPositionMustBe = letterAtPositionMustBe;
+        this.guesses = guesses;
     }
 
     public Set<String> getWordContainsLetters() {
@@ -23,5 +23,17 @@ public class BoardKnowledge {
 
     public List<String> getLetterAtPositionMustBe() {
         return letterAtPositionMustBe;
+    }
+
+    public List<String> getGuesses() {
+        return guesses;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Word cotains: " + wordContainsLetters.toString() + "\n");
+        sb.append("Letters at Position: [" + letterAtPositionMustBe.toString() + "]");
+        return sb.toString();
     }
 }
